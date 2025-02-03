@@ -1,9 +1,9 @@
 import { View, Text, Image, TouchableOpacity } from 'react-native';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { completeOnboarding } from '../../redux/slices/onboardingSlice';
+import { completeOnboarding } from '@/redux/slices/onboardingSlice';
 import { useNavigation } from '@react-navigation/native';
-import "../global.css"; // Ensure global styles are imported
+import "../global.css";
 
 const onboardingSteps = [
     {
@@ -34,7 +34,7 @@ export default function OnboardingScreen() {
             setStep(step + 1);
         } else {
             dispatch(completeOnboarding());
-            navigation.navigate("Home");
+            // navigation.navigate("Home");
         }
     };
 
