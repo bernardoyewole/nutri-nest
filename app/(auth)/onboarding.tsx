@@ -5,7 +5,7 @@ import { completeOnboarding } from '@/redux/slices/onboardingSlice';
 import {LinearGradient} from "expo-linear-gradient";
 import {useRouter} from "expo-router";
 import "../global.css";
-import Animated, {useAnimatedScrollHandler, useSharedValue} from "react-native-reanimated";
+import Animated, {runOnJS, useAnimatedScrollHandler, useSharedValue} from "react-native-reanimated";
 
 const { width, height } = Dimensions.get("window");
 
@@ -47,9 +47,16 @@ export default function OnboardingScreen() {
 
     const scrollHandler = useAnimatedScrollHandler({
         onScroll: (event) => {
+            let newStep = Math.round(event.contentOffset.x / width); // 🔹 Determine current step
+
+            if (newStep !== step) {
+                runOnJS(setStep)(newStep);
+            }
+
             scrollX.value = event.contentOffset.x;
-        }
+        },
     });
+
 
     return (
         <Animated.ScrollView
