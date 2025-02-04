@@ -6,14 +6,14 @@ export default function AuthLayout() {
             <Stack
                 screenOptions={{
                     headerShown: false,
-                    gestureEnabled: false,
+                    // gestureEnabled: false,
                 }}
             >
                 <Stack.Screen
                     name="onboarding"
-                    options={{
-                        gestureEnabled: false,
-                    }}
+                    // options={{
+                    //     gestureEnabled: false,
+                    // }}
                 />
             </Stack>
     );

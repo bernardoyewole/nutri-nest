@@ -1,24 +1,25 @@
-import { View, Text, Image, TouchableOpacity } from 'react-native';
+import {View, Text, Image, TouchableOpacity, Dimensions} from 'react-native';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { completeOnboarding } from '@/redux/slices/onboardingSlice';
 import { useNavigation } from '@react-navigation/native';
+import {LinearGradient} from "expo-linear-gradient";
+import {useRouter} from "expo-router";
 import "../global.css";
 
 const onboardingSteps = [
     {
-        image: 'https://cdn.pixabay.com/photo/2017/06/16/18/35/tarte-2409958_1280.jpg',
+        image: require('@/assets/images/onboarding-one.jpg'),
         title: "Discover Healthier Meals",
         description: "Spend quality time with your family while enjoying delicious and nutritious meals.",
     },
     {
-        image: 'https://cdn.pixabay.com/photo/2017/06/16/18/35/tarte-2409958_1280.jpg',
-        // image: require('https://cdn.pixabay.com/photo/2017/06/16/18/35/tarte-2409958_1280.jpg'),
+        image: require('@/assets/images/onboarding-two.jpg'),
         title: "Explore Powerful Features",
         description: "NutriNest offers a range of tools to make healthy eating a breeze.",
     },
     {
-        image: 'https://cdn.pixabay.com/photo/2017/06/16/18/35/tarte-2409958_1280.jpg',
+        image: require('@/assets/images/onboarding-three.jpg'),
         title: "Let's Get Started!",
         description: "NutriNest simplifies meal planning for your family's health. Let's start cooking healthier together!",
     },
@@ -28,36 +29,65 @@ export default function OnboardingScreen() {
     const [step, setStep] = useState(0);
     const dispatch = useDispatch();
     const navigation = useNavigation();
+    const router = useRouter();
+    const width = Dimensions.get("window").width;
+    const height = Dimensions.get("window").height;
 
     const nextStep = () => {
         if (step < onboardingSteps.length - 1) {
             setStep(step + 1);
         } else {
             dispatch(completeOnboarding());
-            // navigation.navigate("Home");
+            router.replace("/(auth)/signup");
         }
     };
 
     return (
-        <View className="flex-1 bg-green-100 items-center justify-center p-4">
-            <Image src={onboardingSteps[step].image} className="w-64 h-64 mb-6" />
-            <Text className="text-xl font-bold text-gray-800">{onboardingSteps[step].title}</Text>
-            <Text className="text-center text-gray-600 my-2">{onboardingSteps[step].description}</Text>
+        <View className="flex-1">
+            {/* Background Image */}
+            <Image
+                source={onboardingSteps[step].image}
+                style={{ position: "absolute", width: width, height: height }}
+                resizeMode="cover"
+            />
 
-            <View className="flex-row mt-4">
-                {onboardingSteps.map((_, index) => (
-                    <View
-                        key={index}
-                        className={`w-3 h-3 mx-1 rounded-full ${step === index ? 'bg-red-500' : 'bg-gray-400'}`}
-                    />
-                ))}
+            {/* Gradient Overlay */}
+            <LinearGradient
+                style={{ position: "absolute", width: width, height: height }}
+                colors={['transparent', "#dcfce7"]}
+            />
+
+            {/* Wrapper for Onboarding Content */}
+            <View style={{ flex: 1, justifyContent: "flex-end" }}>
+                <View className="bg-green-100 p-6 rounded-t-3xl shadow-lg w-full">
+                    <Text className="text-3xl font-bold text-gray-800 text-center">{onboardingSteps[step].title}</Text>
+                    <Text className="text-center text-gray-600 my-10 text-lg">{onboardingSteps[step].description}</Text>
+                    <View className="flex-row justify-center">
+                        {onboardingSteps.map((_, index) => (
+                            <TouchableOpacity key={index} onPress={() => setStep(index)}>
+                                <View
+                                    className={`w-8 h-2 mx-1 rounded-full ${step === index ? 'bg-green-700' : 'bg-yellow-300'}`}
+                                />
+                            </TouchableOpacity>
+                        ))}
+                    </View>
+                    <TouchableOpacity
+                        onPress={() => router.replace("/(auth)/signup")}
+                        style={{ alignSelf: "flex-end", paddingVertical: 24 }}
+                    >
+                        <Text style={{ color: "green", textDecorationLine: "underline", fontWeight: "bold", fontSize: 18 }}>
+                            SKIP
+                        </Text>
+                    </TouchableOpacity>
+
+                    <TouchableOpacity onPress={nextStep} className="bg-red-500 py-4 mb-6 rounded-lg">
+                        <Text className="text-white font-semibold text-center text-lg">
+                            {step === onboardingSteps.length - 1 ? "GET STARTED" : "NEXT"}
+                        </Text>
+                    </TouchableOpacity>
+                </View>
             </View>
-
-            <TouchableOpacity onPress={nextStep} className="mt-6 bg-red-500 py-2 px-6 rounded-full">
-                <Text className="text-white font-semibold">
-                    {step === onboardingSteps.length - 1 ? "GET STARTED" : "NEXT"}
-                </Text>
-            </TouchableOpacity>
         </View>
+
     );
 }
