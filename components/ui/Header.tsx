@@ -20,7 +20,7 @@ export default function Header({ color = "#fff", title, showBackButton = false }
                 right: 0,
                 zIndex: 1000, // Ensures it stays above other content
                 backgroundColor: color,
-                paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 40,
+                paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 50,
                 paddingBottom: 16,
                 flexDirection: "row",
                 alignItems: "center",
@@ -34,7 +34,7 @@ export default function Header({ color = "#fff", title, showBackButton = false }
         >
             {showBackButton ? (
                 <TouchableOpacity onPress={() => router.back()} style={{ padding: 10 }}>
-                    <ChevronLeft size={24} color="black" />
+                    <ChevronLeft size={24} color="white" />
                 </TouchableOpacity>
             ) : (
                 <View style={{ width: 40 }} />

@@ -18,9 +18,14 @@ const LoginScreen = () => {
             <Animated.ScrollView contentContainerStyle={{ flexGrow: 1, justifyContent: "center", alignItems: "center" }} className="p-6">
                 <View className="w-full max-w-md">
                     <View className="mb-8">
-                        <Text className="text-4xl text-green-800 font-bold text-center mb-4">NutriNest</Text>
-                        <Text className="text-2xl font-bold text-center">Welcome Back</Text>
-                        <Text className="text-center text-gray-600 text-xl mt-2">Log in to continue</Text>
+                        <View className='flex items-center'>
+                            <Image source={require("@/assets/images/salad.png")} style={{ height: 50, width: 50 }} />
+                            <Text className="text-4xl font-bold font-sans">
+                                nutrinest
+                            </Text>
+                        </View>
+                        <Text className="text-2xl font-bold text-center my-4">Welcome Back</Text>
+                        <Text className="text-center text-gray-600 text-xl">Log in to continue</Text>
                     </View>
 
                     <Input icon={Mail} placeholder="Email address" keyboardType="email-address" onChangeText={(text) => setForm({ ...form, email: text })} />

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import {View, Text, TextInput, TouchableOpacity, Animated, KeyboardAvoidingView, Platform} from "react-native";
+import {View, Text, TextInput, TouchableOpacity, Animated, KeyboardAvoidingView, Platform, Image} from "react-native";
 import {useRouter} from "expo-router";
 import ScrollView = Animated.ScrollView;
 import {CircleUserRound, User, Mail, Lock, Phone, EyeOff, Eye} from 'lucide-react-native'
@@ -22,10 +22,14 @@ export default function SignUpScreen() {
                     className="p-6"
                 >
                     <View className="w-full max-w-md">
-                        <View className="mb-8">
-                            <Text className="text-4xl text-green-800 font-bold text-center mb-4">NutriNest</Text>
-                            <Text className="text-2xl font-bold text-center">Create an Account</Text>
-                            <Text className="text-center text-gray-600 text-xl mt-2">Securely login to your account</Text>
+                        <View className="flex items-center mb-8">
+                            <View className='flex items-center'>
+                                <Image source={require("@/assets/images/salad.png")} style={{ height: 50, width: 50 }} />
+                                <Text className="text-4xl font-bold font-sans">
+                                    nutrinest
+                                </Text>
+                            </View>
+                            <Text className="text-gray-600 text-xl mt-6">Please provide your details</Text>
                         </View>
 
                         <Input icon={CircleUserRound} placeholder="First Name" onChangeText={(text) => setForm({ ...form, firstName: text })} />

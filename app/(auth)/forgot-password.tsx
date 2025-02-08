@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import {
     View, Text, TextInput, TouchableOpacity, Animated,
-    KeyboardAvoidingView, Platform
+    KeyboardAvoidingView, Platform, Image
 } from "react-native";
 import { useRouter } from "expo-router";
 import ScrollView = Animated.ScrollView;
 import { Mail } from 'lucide-react-native';
+import Header from "@/components/ui/Header";
 
 export default function ForgotPasswordScreen() {
     const router = useRouter();
@@ -14,8 +15,9 @@ export default function ForgotPasswordScreen() {
     return (
         <KeyboardAvoidingView
             behavior={Platform.OS === "ios" ? "padding" : "height"}
-            className="flex-1 bg-green-100"
+            className="flex-1"
         >
+            <Header color='#166534' title="Reset Password" showBackButton />
             <ScrollView
                 contentContainerStyle={{ flexGrow: 1, justifyContent: "center", alignItems: "center" }}
                 keyboardDismissMode="on-drag"
@@ -23,9 +25,13 @@ export default function ForgotPasswordScreen() {
             >
                 <View className="w-full max-w-md">
                     <View className="mb-8">
-                        <Text className="text-4xl text-green-800 font-bold text-center mb-4">NutriNest</Text>
-                        <Text className="text-2xl font-bold text-center">Reset Password</Text>
-                        <Text className="text-center text-gray-600 text-xl mt-2">
+                        <View className='flex items-center'>
+                            <Image source={require("@/assets/images/salad.png")} style={{ height: 50, width: 50 }} />
+                            <Text className="text-4xl font-bold font-sans">
+                                nutrinest
+                            </Text>
+                        </View>
+                        <Text className="text-center text-gray-600 text-xl mt-6">
                             Enter your email to receive a password reset link
                         </Text>
                     </View>
