@@ -4,6 +4,7 @@ import {useRouter} from "expo-router";
 import ScrollView = Animated.ScrollView;
 import {CircleUserRound, User, Mail, Lock, Phone, EyeOff, Eye} from 'lucide-react-native'
 import Input from '@/components/ui/Input'
+import Header from "@/components/ui/Header";
 
 export default function SignUpScreen() {
     const router = useRouter();
@@ -12,8 +13,9 @@ export default function SignUpScreen() {
     return (
          <KeyboardAvoidingView
                 behavior={Platform.OS === "ios" ? "padding" : "height"}
-                className="flex-1 bg-green-100"
+                className="flex-1"
             >
+             <Header color='#166534' title="Create an Account" showBackButton />
                 <ScrollView
                     contentContainerStyle={{ flexGrow: 1, justifyContent: "center", alignItems: "center" }}
                     keyboardDismissMode="on-drag"
