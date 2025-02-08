@@ -1,53 +1,55 @@
-import {useEffect, useRef} from 'react';
-import { useRouter } from 'expo-router';
-import {Animated, Text } from 'react-native';
+import { useRouter } from "expo-router";
+import { useEffect, useRef } from "react";
+import { Animated, Image, Text, TouchableOpacity, View, Dimensions } from "react-native";
+import { LinearGradient } from "expo-linear-gradient";
+
+const { width, height } = Dimensions.get("window");
 
 export default function Index() {
     const router = useRouter();
-    const fadeAnim = useRef(new Animated.Value(0)).current; // Initial opacity = 1
-    const scaleAnim = useRef(new Animated.Value(1.1)).current;
+    const fadeAnim = useRef(new Animated.Value(0)).current; // Controls fade-in effect
 
     useEffect(() => {
-        Animated.parallel([
-            // Text fade in and scale
-            Animated.sequence([
-                Animated.parallel([
-                    Animated.timing(fadeAnim, {
-                        toValue: 1,
-                        duration: 1000,
-                        useNativeDriver: true,
-                    }),
-                    Animated.timing(scaleAnim, {
-                        toValue: 1,
-                        duration: 1000,
-                        useNativeDriver: true,
-                    }),
-                ]),
-                Animated.delay(1500),
-                // Text fade out
-                Animated.timing(fadeAnim, {
-                    toValue: 0.5,
-                    duration: 800,
-                    useNativeDriver: true,
-                }),
-            ])
-        ])
-            .start(() => {
-                router.replace('/(auth)/onboarding');
-            });
+        // Start fade-in animation when component mounts
+        Animated.timing(fadeAnim, {
+            toValue: 1,
+            duration: 1200,
+            useNativeDriver: true,
+        }).start();
     }, []);
 
     return (
-        <Animated.View style={{
-            flex: 1,
-            justifyContent: 'center',
-            alignItems: 'center',
-            backgroundColor: '#E0F7D4',
-            opacity: fadeAnim, // Apply fading animation
-        }}>
-            {/*<Image source={require('../../assets/nutrinest_logo.png')} style={{ width: 150, height: 150, marginBottom: 20 }} />*/}
-            <Text style={{fontSize: 24, fontWeight: 'bold', color: '#333'}}>Welcome to NutriNest!</Text>
-            <Text style={{fontSize: 16, color: '#666', marginTop: 5}}>Simplify Healthy Family Meals</Text>
+        <Animated.View className="flex-1 relative" style={{ opacity: fadeAnim }}>
+            <Image
+                source={require("@/assets/images/splash.jpg")}
+                style={{ position: "absolute", width, height }}
+                resizeMode="cover"
+            />
+
+            <LinearGradient
+                colors={["transparent", "rgba(0, 56, 6, 0.5)"]}
+                style={{ position: "absolute", width, height }}
+            />
+
+            <View className="absolute top-20 left-0 right-0 items-center">
+                <Image source={require("@/assets/images/salad.png")} style={{ height: 50, width: 50 }} />
+                <Animated.Text style={{ opacity: fadeAnim }} className="text-4xl font-bold mt-2 font-sans">
+                    nutrinest
+                </Animated.Text>
+            </View>
+
+            <View className="absolute bottom-12 left-0 right-0 px-6">
+                <Animated.Text style={{ opacity: fadeAnim }} className="text-white text-4xl font-bold mb-2">
+                    Welcome!
+                </Animated.Text>
+                <Animated.Text style={{ opacity: fadeAnim }} className="text-white text-lg opacity-80 leading-6">
+                    Sum sociis natoque penatibus et magnis dis parturient montes nascetur ridiculus mus.
+                </Animated.Text>
+
+                <TouchableOpacity className="bg-red-500 p-4 rounded-lg mt-6" onPress={() => router.push("/(auth)/onboarding")}>
+                    <Text className="text-white text-lg text-center font-semibold">Continue</Text>
+                </TouchableOpacity>
+            </View>
         </Animated.View>
     );
 }

@@ -34,12 +34,11 @@ export default function LoginScreen() {
                             </TouchableOpacity>
                         </View>
 
-                        {/* Login Button */}
                         <TouchableOpacity className="bg-red-500 p-4 rounded-lg" onPress={() => console.log("Login pressed", form)}>
                             <Text className="text-white text-lg text-center">Login</Text>
                         </TouchableOpacity>
-                        <View>
-                            <Text className='text-lg text-center mb-4'>OR</Text>
+                        <View className='my-6'>
+                            <Text className='text-lg text-center'>OR CONTINUE WITH</Text>
                         </View>
 
                         <View className="flex-row justify-center space-x-4">
