@@ -15,7 +15,11 @@ const LoginScreen = () => {
         <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : "height"} className="flex-1 ">
             <Header color="#166534" title="Login" showBackButton />
 
-            <Animated.ScrollView contentContainerStyle={{ flexGrow: 1, justifyContent: "center", alignItems: "center" }} className="p-6">
+            <Animated.ScrollView
+                contentContainerStyle={{ flexGrow: 1, justifyContent: "center", alignItems: "center" }}
+                className="p-6"
+                keyboardDismissMode="on-drag"
+            >
                 <View className="w-full max-w-md">
                     <View className="mb-8">
                         <View className='flex items-center'>
