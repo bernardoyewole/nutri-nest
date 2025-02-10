@@ -6,7 +6,7 @@ import {
 import { useRouter } from "expo-router";
 import ScrollView = Animated.ScrollView;
 import { Mail } from 'lucide-react-native';
-import Header from "@/components/ui/Header";
+import Header from "@/components/ui/header";
 
 export default function ForgotPasswordScreen() {
     const router = useRouter();
@@ -17,11 +17,11 @@ export default function ForgotPasswordScreen() {
             behavior={Platform.OS === "ios" ? "padding" : "height"}
             className="flex-1"
         >
-            <Header color='#166534' title="Reset Password" showBackButton />
+            <Header color='#166534' title="Reset Password" />
             <ScrollView
                 contentContainerStyle={{ flexGrow: 1, justifyContent: "center", alignItems: "center" }}
                 keyboardDismissMode="on-drag"
-                className="p-6"
+                className="p-6 bg-[#f3faf5]"
             >
                 <View className="w-full max-w-md">
                     <View className="mb-8">

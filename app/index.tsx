@@ -46,7 +46,7 @@ export default function Index() {
                     Sum sociis natoque penatibus et magnis dis parturient montes nascetur ridiculus mus.
                 </Animated.Text>
 
-                <TouchableOpacity className="bg-red-500 p-4 rounded-lg mt-6" onPress={() => router.push("/(auth)/onboarding")}>
+                <TouchableOpacity className="bg-red-500 p-4 rounded-lg mt-6" onPress={() => router.replace("/(auth)/onboarding")}>
                     <Text className="text-white text-lg text-center font-semibold">Continue</Text>
                 </TouchableOpacity>
             </View>

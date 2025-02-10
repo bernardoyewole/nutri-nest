@@ -4,18 +4,18 @@ import {
     Platform, KeyboardAvoidingView, Image, TouchableWithoutFeedback
 } from "react-native";
 import { useLocalSearchParams, useRouter } from "expo-router";
-import Header from "@/components/ui/Header";
+import Header from "@/components/ui/header";
 import { OtpInput } from "react-native-otp-entry";
 
-export default function OTPScreen() {
+export default function OtpScreen() {
     const router = useRouter();
     const { phone } = useLocalSearchParams();
 
     return (
         <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
             <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : "height"} className="flex-1">
-                <Header color="#166534" title="Verification" showBackButton />
-                <View className="flex-1 p-6 justify-center">
+                <Header color="#166534" title="Verification" />
+                <View className="flex-1 p-6 justify-center bg-[#f3faf5]">
                     {/* Logo */}
                     <View className="flex items-center mb-8">
                         <Image source={require("@/assets/images/salad.png")} style={{ height: 50, width: 50 }} />
@@ -39,7 +39,7 @@ export default function OTPScreen() {
                     />
 
                     {/* Verify Button */}
-                    <TouchableOpacity className="bg-red-500 p-4 rounded-lg mt-6" onPress={() => router.push("/(main)/index")}>
+                    <TouchableOpacity className="bg-red-500 p-4 rounded-lg mt-6" onPress={() => router.replace("/(auth)/verified")}>
                         <Text className="text-white text-lg text-center">Verify</Text>
                     </TouchableOpacity>
 

@@ -3,8 +3,8 @@ import { View, Text, TouchableOpacity, KeyboardAvoidingView, Platform, Animated,
 import { useRouter } from "expo-router";
 import { Mail, Lock } from 'lucide-react-native';
 import Checkbox from "expo-checkbox"; // Install with: npm install expo-checkbox
-import Input from "@/components/ui/Input";
-import Header from "@/components/ui/Header";
+import Input from "@/components/ui/input";
+import Header from "@/components/ui/header";
 
 const LoginScreen = () => {
     const router = useRouter();
@@ -17,7 +17,7 @@ const LoginScreen = () => {
 
             <Animated.ScrollView
                 contentContainerStyle={{ flexGrow: 1, justifyContent: "center", alignItems: "center" }}
-                className="p-6"
+                className="p-6 bg-[#f3faf5]"
                 keyboardDismissMode="on-drag"
             >
                 <View className="w-full max-w-md">
@@ -45,7 +45,7 @@ const LoginScreen = () => {
                         </TouchableOpacity>
                     </View>
 
-                    <TouchableOpacity className="bg-red-500 p-4 rounded-lg" onPress={() => console.log("Login pressed", form)}>
+                    <TouchableOpacity className="bg-red-500 p-4 rounded-lg" onPress={() => router.replace('/(main)/home')}>
                         <Text className="text-white text-lg text-center">Login</Text>
                     </TouchableOpacity>
 

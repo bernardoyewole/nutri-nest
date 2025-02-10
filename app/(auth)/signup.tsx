@@ -3,8 +3,8 @@ import {View, Text, TextInput, TouchableOpacity, Animated, KeyboardAvoidingView,
 import {useRouter} from "expo-router";
 import ScrollView = Animated.ScrollView;
 import {CircleUserRound, User, Mail, Lock, Phone, EyeOff, Eye} from 'lucide-react-native'
-import Input from '@/components/ui/Input'
-import Header from "@/components/ui/Header";
+import Input from '@/components/ui/input'
+import Header from "@/components/ui/header";
 
 export default function SignUpScreen() {
     const router = useRouter();
@@ -15,11 +15,11 @@ export default function SignUpScreen() {
                 behavior={Platform.OS === "ios" ? "padding" : "height"}
                 className="flex-1"
             >
-             <Header color='#166534' title="Create an Account" showBackButton />
+             <Header color='#166534' title="Create an Account" />
                 <ScrollView
                     contentContainerStyle={{ flexGrow: 1, justifyContent: "center", alignItems: "center" }}
                     keyboardDismissMode="on-drag"
-                    className="p-6"
+                    className="p-6 bg-[#f3faf5]"
                 >
                     <View className="w-full max-w-md">
                         <View className="flex items-center mb-8">
@@ -41,7 +41,7 @@ export default function SignUpScreen() {
                         <TouchableOpacity
                             className="bg-red-500 p-4 rounded-lg"
                             onPress={() =>
-                                router.push({ pathname: "/(auth)/OTP", params: { phone: form.phone } })}
+                                router.push({ pathname: "/(auth)/otp", params: { phone: form.phone } })}
                         >
                             <Text className="text-white text-lg text-center">Create Account</Text>
                         </TouchableOpacity>

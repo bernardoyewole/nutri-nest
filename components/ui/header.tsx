@@ -37,7 +37,7 @@ export default function Header({ color = "#fff", title, showBackButton = false }
                     <ChevronLeft size={24} color="white" />
                 </TouchableOpacity>
             ) : (
-                <View style={{ width: 40 }} />
+                <View style={{ width: 40, padding: 20 }} />
             )}
 
             <Text style={{ fontSize: 20, fontWeight: "bold", textAlign: "center", flex: 1, color: '#fff' }}>{title}</Text>

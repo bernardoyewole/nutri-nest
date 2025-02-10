@@ -41,7 +41,7 @@ export default function OnboardingScreen() {
             scrollRef.current?.scrollTo({ x: newStep * width, animated: true });
         } else {
             dispatch(completeOnboarding());
-            router.navigate("/(auth)/signup");
+            router.replace("/(auth)/signup");
         }
     };
 
@@ -85,7 +85,7 @@ export default function OnboardingScreen() {
 
                     {/* Wrapper for Onboarding Content */}
                     <View style={{ flex: 1, justifyContent: "flex-end" }}>
-                        <View className="bg-green-100 p-6 rounded-t-3xl shadow-lg w-full">
+                        <View className="bg-green-50 p-6 rounded-t-3xl shadow-lg w-full">
                             <Text className="text-3xl font-bold text-gray-800 text-center">
                                 {stepData.title}
                             </Text>
@@ -103,7 +103,7 @@ export default function OnboardingScreen() {
                             </View>
 
                             <TouchableOpacity
-                                onPress={() => router.navigate("/(auth)/signup")}
+                                onPress={() => router.replace("/(auth)/signup")}
                                 style={{ alignSelf: "flex-end", paddingVertical: 24 }}
                             >
                                 <Text style={{ color: "green", textDecorationLine: "underline", fontWeight: "bold", fontSize: 18 }}>
