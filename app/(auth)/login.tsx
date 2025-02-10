@@ -13,7 +13,7 @@ const LoginScreen = () => {
 
     return (
         <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : "height"} className="flex-1 ">
-            <Header color="#166534" title="Login" showBackButton />
+            <Header color="#166534" title="Login" />
 
             <Animated.ScrollView
                 contentContainerStyle={{ flexGrow: 1, justifyContent: "center", alignItems: "center" }}
@@ -40,12 +40,12 @@ const LoginScreen = () => {
                             <Checkbox value={rememberMe} onValueChange={setRememberMe} color={rememberMe ? "#10B981" : undefined} />
                             <Text className="ml-2 text-gray-700">Remember me</Text>
                         </View>
-                        <TouchableOpacity onPress={() => router.push("/(auth)/forgot-password")}>
+                        <TouchableOpacity onPress={() => router.replace("/(auth)/forgot-password")}>
                             <Text className="text-red-500">Forgot Password?</Text>
                         </TouchableOpacity>
                     </View>
 
-                    <TouchableOpacity className="bg-red-500 p-4 rounded-lg" onPress={() => router.replace('/(main)/home')}>
+                    <TouchableOpacity className="bg-red-500 p-4 rounded-lg" onPress={() => router.replace('/(user-info)/basic-info')}>
                         <Text className="text-white text-lg text-center">Login</Text>
                     </TouchableOpacity>
 

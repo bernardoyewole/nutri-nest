@@ -22,7 +22,7 @@ export default function VerificationSuccessScreen() {
             {/* Continue Button */}
             <TouchableOpacity
                 className="bg-red-500 p-4 rounded-lg w-full max-w-sm"
-                onPress={() => router.replace("/(main)/home")}
+                onPress={() => router.replace("/(user-info)/basic-info")}
             >
                 <Text className="text-white text-lg text-center">Continue</Text>
             </TouchableOpacity>

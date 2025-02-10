@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import {View, Text, TextInput, TouchableOpacity, Animated, KeyboardAvoidingView, Platform, Image} from "react-native";
+import {View, Text, TouchableOpacity, Animated, KeyboardAvoidingView, Platform, Image} from "react-native";
 import {useRouter} from "expo-router";
 import ScrollView = Animated.ScrollView;
 import {CircleUserRound, User, Mail, Lock, Phone, EyeOff, Eye} from 'lucide-react-native'
