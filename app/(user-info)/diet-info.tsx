@@ -5,7 +5,7 @@ import {
 } from "react-native";
 import { useRouter } from "expo-router";
 import Header from "@/components/ui/header";
-import { CheckCircle, Circle, XCircle, MinusCircle, PlusCircle } from "lucide-react-native";
+import {CheckCircle, Circle, XCircle, MinusCircle, PlusCircle} from "lucide-react-native";
 
 export default function DietInfoScreen() {
     const router = useRouter();
@@ -64,7 +64,7 @@ export default function DietInfoScreen() {
 
                 {/* OR Options */}
                 <Text className="my-4 text-gray-600 text-lg ml-2">Or</Text>
-                <View className="flex-row gap-2">
+                <View className="flex-row gap-6">
                     {["Vegan", "Paleo"].map((item) => (
                         <TouchableOpacity key={item} onPress={() => setPreferences([item])} className="flex-row items-center">
                             <Circle size={20} color={preferences.includes(item) ? "green" : "gray"} />
@@ -96,10 +96,10 @@ export default function DietInfoScreen() {
                 ))}
 
                 {/* Family Size */}
-                <Text className="text-xl font-semibold mt-4 mb-2">Family Size:</Text>
-                <View className="flex-row justify-between">
+                <Text className="text-xl font-bold mt-4 mb-2">Family Size:</Text>
+                <View className="flex-row gap-10 items-center">
                     <TextInput
-                        className="text-xl font-semibold text-center border-gray-400"
+                        className="border-[1px] flex leading-[20px] w-[150px] h-[40px] text-xl font-semibold text-center border-gray-400 rounded-lg"
                         value={familySize.toString()}
                         onChangeText={(text) => {
                             const num = parseInt(text);
@@ -108,18 +108,17 @@ export default function DietInfoScreen() {
                             }
                         }}
                         keyboardType="numeric"
-                        style={{width:150, height:40, borderWidth: 1, display: 'flex', lineHeight: 20}}
+                        editable={false}
                     />
-                    <View className="flex-row">
+                    <View className="flex-row gap-6">
                         {/* Decrease Button */}
                         <TouchableOpacity onPress={decreaseSize} disabled={familySize <= 1}>
-                            <MinusCircle size={28} color={familySize > 1 ? "#008080" : "#ccc"} />
+                            <MinusCircle size={32} color={familySize > 1 ? "#008080" : "#ccc"} />
                         </TouchableOpacity>
-
-
+                        <Text className='text-3xl text-gray-500'>|</Text>
                         {/* Increase Button */}
                         <TouchableOpacity onPress={increaseSize} disabled={familySize >= 10}>
-                            <PlusCircle size={28} color={familySize < 10 ? "#008080" : "#ccc"} />
+                            <PlusCircle size={32} color={familySize < 10 ? "#008080" : "#ccc"} />
                         </TouchableOpacity>
                     </View>
                 </View>
@@ -128,20 +127,21 @@ export default function DietInfoScreen() {
                 <Text className="text-xl font-bold mt-4 mb-2">Ingredients to Avoid:</Text>
                 <View className="flex-row flex-wrap gap-2 mb-2">
                     {ingredients.map((ingredient, index) => (
-                        <View key={index} className="flex-row gap-4 items-center bg-white p-4 rounded-lg">
+                        <View key={index} className="flex-row gap-3 items-center bg-white p-2 rounded-lg">
                             <Text className='text-lg'>{ingredient}</Text>
                             <TouchableOpacity onPress={() => removeIngredient(ingredient)}>
-                                <XCircle size={16} color="red" style={{marginLeft: 4}} />
+                                <XCircle size={24} color="red" />
                             </TouchableOpacity>
                         </View>
                     ))}
                 </View>
                 <TextInput
-                    className="border-2 border-gray-400 rounded-lg p-4"
+                    className="border-[1px] border-gray-400 rounded-lg p-4"
                     placeholder="Add new ingredient..."
                     onSubmitEditing={(e) => {
-                        if (e.nativeEvent.text) {
-                            setIngredients([...ingredients, e.nativeEvent.text]);
+                        let ingredient = e.nativeEvent.text.trim().toString()
+                        if (ingredient.length > 0 && !ingredients.includes(ingredient)) {
+                            setIngredients([...ingredients, ingredient]);
                         }
                         e.nativeEvent.text = "";
                     }}
@@ -160,11 +160,11 @@ export default function DietInfoScreen() {
                 <Text className="text-sm text-gray-500">(Meal plan with only seasonal vegetables and fruits)</Text>
 
                 {/* Skip & Next Buttons */}
-                <View className="flex flex-row justify-between mt-6">
-                    <TouchableOpacity className="p-4" onPress={() => router.push("/(user-info)/diet-info")}>
+                <View className="flex flex-row justify-between mt-6 pb-10">
+                    <TouchableOpacity className="p-4" onPress={() => router.push("/(main)/meal-planner")}>
                         <Text className="text-red-500">Skip</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity className="bg-red-500 p-4 rounded-lg" onPress={() => router.push("/(user-info)/diet-info")}>
+                    <TouchableOpacity className="bg-red-500 p-4 rounded-lg" onPress={() => router.push("/(main)/meal-planner")}>
                         <Text className="text-white">Next →</Text>
                     </TouchableOpacity>
                 </View>
